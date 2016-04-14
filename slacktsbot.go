@@ -30,6 +30,7 @@ var (
 	user         *string = flag.String("user", "youradminuser", "teamspeak 3 server admin user")
 	pass         *string = flag.String("password", "yourpassword", "teamspeak 3 server admin user password")
 	slackhookurl *string = flag.String("slack", "https://hooks.slack.com/services/YOURSLACKWEBHOOKURL", "slack webhook url")
+	slackchannel *string = flag.String("slackchan", "#yourslackchannel", "slack channel name")
 )
 
 func init() {
@@ -75,7 +76,7 @@ func main() {
 
 func generateAndSendPayload(user string, action string) {
 	payload := Payload{
-		Channel:   "#wgs-general",
+		Channel:   *slackchannel,
 		IconEmoji: ":poop:",
 		Text:      "",
 		Username:  "TS3 Bot",
